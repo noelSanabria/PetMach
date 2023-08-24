@@ -1,0 +1,7 @@
+{
+  "name": "PetMach",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
