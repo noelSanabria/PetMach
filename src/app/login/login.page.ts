@@ -13,12 +13,12 @@ import{
 })
 export class LoginPage implements OnInit {
 
-    formulariologin: FormGroup;
+  formulariologin : FormGroup;
 
   constructor(public fb: FormBuilder) {
 
 
-    this.formulariologin = this.fb.group({
+    this.formulariologin  = this.fb.group({
       'nombre': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required),
 

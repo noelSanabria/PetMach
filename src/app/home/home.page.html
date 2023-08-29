@@ -1,12 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="purple">
+    <ion-title>Inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-button [routerLink]="['/login']">Go to login</ion-button>
-
+<ion-content class="background">
+  <div class="content">
+    <h2>Bienvenido a nuestra aplicación</h2>
+    <div class="button-container">
+      <ion-button expand="block" color="primary" [routerLink]="['/login']">Iniciar Sesión</ion-button>
+      <ion-button expand="block" color="secondary" [routerLink]="['/registro']">Registro</ion-button>
+    </div>
+  </div>
 </ion-content>

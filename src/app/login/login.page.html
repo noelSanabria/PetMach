@@ -1,42 +1,37 @@
-<ion-header >
-<ion-toolbar color="primary">
-  <ion-title>PetMatch</ion-title>
-
-
-</ion-toolbar>
+<ion-header>
+  <ion-toolbar color="tertiary">  
+    <ion-title>PetMatch</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content >
- <ion-card>
-  <ion-card-header>
-    <ion-card-title>Login</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <form [formGroup]="formulariologin">
-      <ion-item>
-        <ion-label position="floating">Nombre</ion-label>
-        <ion-input formControlName="nombre"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input formControlName="password" type="password"></ion-input>
-      </ion-item>
-    </form>
 
-    <br>
-    <ion-button>
-      Ingresar
-    </ion-button> 
-  </ion-card-content>
- </ion-card>  
+
+<ion-content class="content">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="formulariologin">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+      </form>
+      <br>
+      <ion-button expand="block" [routerLink]="['/home']" color="tertiary">Iniciar sesión</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="primary">
-<ion-buttons slot="end">
-  <ion-buttons [routerLink]= "['/resgistro'] ">Registro</ion-buttons>
-
-
-</ion-buttons>
-</ion-toolbar>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/registro']">Registrarse</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-footer>
