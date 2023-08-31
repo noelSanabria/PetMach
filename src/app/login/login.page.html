@@ -1,37 +1,37 @@
 <ion-header>
-  <ion-toolbar color="tertiary">  
-    <ion-title>PetMatch</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-
-
-<ion-content class="content">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Login</ion-card-title>
-    </ion-card-header>
+<ion-content>
+  <ion-card class="purple-card">
     <ion-card-content>
-      <form [formGroup]="formulariologin">
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>
-        </ion-item>
+      <div class="centered-image">
+        <img src="assets/img/logo.png" alt="logo">
+      </div>
+
+      <form [formGroup]="formulariologin" class="color">
+        <ion-card>
+          <ion-item>
+            <ion-label position="floating">Nombre de Usuario</ion-label>
+            <ion-input formControlName="nombre"></ion-input>
+          </ion-item>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+        </ion-card>
       </form>
-      <br>
-      <ion-button expand="block" [routerLink]="['/home']" color="tertiary">Iniciar sesión</ion-button>
+
+      <ion-buttons class="ion-justify-content-center">
+        <ion-button [routerLink]="['/home']" class="gradient-button">Iniciar sesión</ion-button>
+      </ion-buttons>
+
+      <ion-buttons class="ion-justify-content-center">
+        <ion-button [routerLink]="['/restablecer-contrasena']" color="primary">¿Olvidó la Contraseña?</ion-button>
+      </ion-buttons>
     </ion-card-content>
   </ion-card>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar color="tertiary">
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/registro']">Registrarse</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
