@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>restablecer-contrasena</ion-title>
-  </ion-toolbar>
+<ion-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">restablecer-contrasena</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content style="color: mycolor;">
+  
+  <ion-card class="purple-card">
+    <ion-card-content>
+    
+      
+      <div class="centered-image">  
+        <img src="assets/img/logo.png" alt="logo">
+      </div>
+
+      <ion-card >
+        <ion-card-header >
+          <ion-card-title >Olvidaste tu contraseña?</ion-card-title>
+          <ion-card-subtitle>Por favor ingresar el email asociado a tu cuenta y te enviaremos un link para restablecer tu contraseña.</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <form [formGroup]="formularioRestablecerContrasena" class="color">
+              <ion-card>
+              <ion-item>
+                <ion-label >email</ion-label>
+                <ion-input formControlName="correo"></ion-input>
+              </ion-item>
+            </ion-card>
+          </form>
+        </ion-card-content>
+      </ion-card>
+
+
+        </ion-card-content>
+        <ion-buttons class="ion-justify-content-center">
+          <ion-button [routerLink]="['/login']" class="gradient-button">Restablecer Contraseña</ion-button>
+        </ion-buttons>
+  
+        <ion-buttons class="ion-justify-content-center">
+          <ion-button [routerLink]="['/login']" color="primary">Volver</ion-button>
+        </ion-buttons>
+
+        
+      </ion-card>
+
+      
+
+
 </ion-content>

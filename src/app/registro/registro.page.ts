@@ -11,6 +11,8 @@ import {
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
+
+
 export class RegistroPage implements OnInit {
 
   formularioregistro: FormGroup;
