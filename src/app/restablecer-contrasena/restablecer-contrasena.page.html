@@ -1,27 +1,32 @@
 <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" color="#1c0e2e"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Restablecer Contraseña</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content style="color: mycolor;">
+<ion-content >
   
   <ion-card class="purple-card">
     <ion-card-content>
     
-      
       <div class="centered-image">  
         <img src="assets/img/logo.png" alt="logo">
       </div>
 
       <ion-card >
         <ion-card-header >
-          <ion-card-title >Olvidaste tu contraseña?</ion-card-title>
-          <ion-card-subtitle>Por favor ingresar el email asociado a tu cuenta y te enviaremos un link para restablecer tu contraseña.</ion-card-subtitle>
+          <ion-card-title>Olvidaste tu contraseña?</ion-card-title>
+          <ion-card-subtitle>Por favor ingresa el email asociado a tu cuenta y te enviaremos un enlace para restablecer tu contraseña.</ion-card-subtitle>
         </ion-card-header>
       
         <ion-card-content>
           <form [formGroup]="formularioRestablecerContrasena" class="color">
-              <ion-card>
+            <ion-card>
               <ion-item>
-                <ion-label >email</ion-label>
+                <ion-label>email</ion-label>
                 <ion-input formControlName="correo"></ion-input>
               </ion-item>
             </ion-card>
@@ -29,20 +34,16 @@
         </ion-card-content>
       </ion-card>
 
+      <ion-buttons class="ion-justify-content-center">
+        <ion-button [routerLink]="['/login']" class="gradient-button" id="trigger-button">Restablecer Contraseña</ion-button>
+        <ion-popover trigger="trigger-button">
+          <ng-template>
+            <ion-content class="ion-padding">Se envió un correo para el cambio de contraseña.</ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-buttons>
 
-        </ion-card-content>
-        <ion-buttons class="ion-justify-content-center">
-          <ion-button [routerLink]="['/login']" class="gradient-button">Restablecer Contraseña</ion-button>
-        </ion-buttons>
-  
-        <ion-buttons class="ion-justify-content-center">
-          <ion-button [routerLink]="['/login']" color="primary">Volver</ion-button>
-        </ion-buttons>
-
-        
-      </ion-card>
-
-      
-
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

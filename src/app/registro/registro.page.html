@@ -1,36 +1,58 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
-          </ion-buttons>
-      <ion-title>PetMatch</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
   
-  <ion-content>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Registro</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="formularioregistro ">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/" color="#1c0e2e"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Registro</ion-title>
+    </ion-toolbar>
+  
+  
+</ion-header>
+
+<ion-content>
+  <ion-card class="purple-card">
+    <ion-card-content>
+      <div class="centered-image">
+        <img src="assets/img/logo.png" alt="logo">
+      </div>
+
+      <form [formGroup]="formularioregistro" class="color">
+        <ion-card>
           <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
+            <ion-label position="floating">Correo </ion-label>
             <ion-input formControlName="nombre"></ion-input>
           </ion-item>
+        </ion-card>
+
+        <ion-card>
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
+        </ion-card>
+
+
+
+        
+        <ion-card>
           <ion-item>
-            <ion-label position="floating">Confirmar contraseña</ion-label>
+            <ion-label position="floating"> confirmar Contraseña</ion-label>
             <ion-input formControlName="confirmacionPassword" type="password"></ion-input>
           </ion-item>
-        </form>
-        <br>
-        <ion-button [routerLink]="['/login']">Registrase</ion-button>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>
+        </ion-card>
+
+      </form>
+
+      <ion-buttons class="ion-justify-content-center">
+        <ion-button [routerLink]="['/login']" class="gradient-button">Iniciar sesión</ion-button>
+      </ion-buttons>
+
+      
+
+    </ion-card-content>
   
-  
+  </ion-card>
+</ion-content>
+

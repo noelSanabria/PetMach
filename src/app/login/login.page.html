@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header style="background-color: #1c0e2e;"> <!--  -->
 </ion-header>
 
 <ion-content>
@@ -31,16 +31,16 @@
       <ion-buttons class="ion-justify-content-center">
         <ion-button [routerLink]="['/restablecer-contrasena']" color="primary">¿Olvidó la Contraseña?</ion-button>
       </ion-buttons>
+
     </ion-card-content>
-
-    <ion-card class="purple-card">
-
-
-    </ion-card>
-
-
-
-
+  
   </ion-card>
 </ion-content>
 
+<ion-footer>
+  <ion-toolbar style="background-color: #1c0e2e;"> <!-- No CAMBIO EL COLOR-->
+    <ion-buttons class="ion-justify-content-center">
+      <ion-button [routerLink]="['/registro']" class="gradient-button">¿Aún no tienes una cuenta?</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
