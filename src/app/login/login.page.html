@@ -1,4 +1,4 @@
-<ion-header style="background-color: #1c0e2e;"> <!--  -->
+<ion-header style="background-color: #1c0e2e;">
 </ion-header>
 
 <ion-content>
@@ -21,6 +21,9 @@
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
+          <ion-item *ngIf="formulariologin.get('password')?.hasError('pattern') && formulariologin.get('password')?.dirty">
+            <ion-label color="danger">La contraseña debe tener 4 números, 3 caracteres y 1 mayúscula.</ion-label>
+          </ion-item>
         </ion-card>
       </form>
 
@@ -38,6 +41,12 @@
       <br>
       <br>
       <br>
+      
+      <br>
+      <br>
+      
+      <br>
+      
       <ion-buttons class="ion-justify-content-center">
         <ion-button [routerLink]="['/registro']" class="gradient-button">¿Aún no tienes una cuenta?</ion-button>
       </ion-buttons>
@@ -46,5 +55,3 @@
   
   </ion-card>
 </ion-content>
-
-
