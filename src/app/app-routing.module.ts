@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'elegir-mascota',
     loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then( m => m.ElegirMascotaPageModule)
   },
+  {
+    path: 'formulario',
+    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
+  },
 
  
 ];
