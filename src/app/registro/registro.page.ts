@@ -16,10 +16,10 @@ import {
 export class RegistroPage implements OnInit {
 
   formularioregistro: FormGroup;
-  
+
   constructor(public fb: FormBuilder) {
     this.formularioregistro = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
+      'usuario': new FormControl("", Validators.required),
       'correo': new FormControl("", Validators.required),
 
       'password': new FormControl("", Validators.required),
