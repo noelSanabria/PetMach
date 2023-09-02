@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'restablecer-contrasena',
     loadChildren: () => import('./restablecer-contrasena/restablecer-contrasena.module').then( m => m.RestablecerContrasenaPageModule)
   },
+  {
+    path: 'elegir-mascota',
+    loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then( m => m.ElegirMascotaPageModule)
+  },
 
  
 ];
