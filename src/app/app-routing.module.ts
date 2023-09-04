@@ -13,8 +13,9 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+  },
+  {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
@@ -24,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'elegir-mascota',
-    loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then( m => m.ElegirMascotaPageModule)
+    loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then(m => m.ElegirMascotaPageModule)
   },
   {
     path: 'formulario',

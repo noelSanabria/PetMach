@@ -1,4 +1,5 @@
 <ion-header [translucent]="true">
+  
 </ion-header>
 
 <ion-content>
@@ -9,14 +10,19 @@
   </div>
 
   
+  
   <ion-fab vertical="top" horizontal="end">
     <ion-fab-button [routerLink]="['/formulario']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-
-
+  <ion-card>
+    <ion-label *ngIf="nombreUsuario" class="ion-text-center">
+      Bienvenido {{ nombreUsuario }}
+    </ion-label>
+  </ion-card>
+  
 
   <ion-fab vertical="top" horizontal="start">
    <ion-fab-button [routerLink]="['/login']">
@@ -26,9 +32,10 @@
 
 
   <ion-card >
+    
     <ion-card-header>
       <ion-card-title> Mis Mascotas</ion-card-title>
-      <ion-card-subtitle></ion-card-subtitle>
+      
     </ion-card-header>
     <ion-card-content>
       <ion-list>

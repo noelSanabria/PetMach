@@ -28,7 +28,7 @@
       </form>
 
       <ion-buttons class="ion-justify-content-center">
-        <ion-button [routerLink]="['/elegir-mascota']" class="gradient-button">Iniciar sesión</ion-button>
+        <ion-button [routerLink]="['/elegir-mascota', formulariologin?.get('nombre')?.value]" class="gradient-button">Iniciar sesión</ion-button>
       </ion-buttons>
       <br>
 

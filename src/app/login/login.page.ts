@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class LoginPage implements OnInit {
   formulariologin: FormGroup;
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, private router: Router) {
     this.formulariologin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
       'password': new FormControl("", [
@@ -20,5 +21,14 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  iniciarSesion() {
+    if (this.formulariologin.valid) {
+      const nombreUsuario = this.formulariologin.value.nombre;
+      this.router.navigate(['/elegir-mascota', { username: nombreUsuario }]);
+    } else {
+      console.log('El formulario no es válido.');
+    }
   }
 }
