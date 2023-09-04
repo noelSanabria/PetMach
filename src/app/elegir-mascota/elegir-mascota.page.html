@@ -1,12 +1,44 @@
+<ion-header [translucent]="true">
+</ion-header>
+
 <ion-content>
+  
 
   <div class="centered-image">
     <img src="assets/img/logo.png" alt="logo">
   </div>
 
+  
   <ion-fab vertical="top" horizontal="end">
     <ion-fab-button [routerLink]="['/formulario']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+
+
+
+  <ion-fab vertical="top" horizontal="start">
+   <ion-fab-button [routerLink]="['/login']">
+    <ion-icon name="exit-outline"></ion-icon>  </ion-fab-button>
+  </ion-fab>
+
+
+
+  <ion-card >
+    <ion-card-header>
+      <ion-card-title> Mis Mascotas</ion-card-title>
+      <ion-card-subtitle></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="assets/img/puddle.png" />
+          </ion-thumbnail>
+          <ion-label>Poodle</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

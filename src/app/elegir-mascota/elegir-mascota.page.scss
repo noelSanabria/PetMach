@@ -3,5 +3,14 @@
   margin: 20px auto;
   max-width: 100px;
   height: auto;
+  
 }
 
+/* styles.scss */
+
+.card-thumbnail {
+  img {
+    width: 100px; /* Ajusta el ancho según tus necesidades */
+    /* Agrega otros estilos según sea necesario */
+  }
+}
