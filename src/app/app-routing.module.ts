@@ -39,8 +39,13 @@ const routes: Routes = [
     path: 'mascota-combatible',
     loadChildren: () => import('./mascota-combatible/mascota-combatible.module').then( m => m.MascotaCombatiblePageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
 
- 
+
+
 ];
 
 @NgModule({
