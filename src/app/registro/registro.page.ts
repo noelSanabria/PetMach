@@ -35,6 +35,7 @@ export class RegistroPage implements OnInit {
 
     if(this.formularioregistro.invalid){
       const alert = await this.alertController.create({
+        header: 'Datos Incompletos',
         message: 'Tienes que llenar todos los datos!',
         buttons: ['Aceptar'],
       });
