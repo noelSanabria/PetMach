@@ -3,13 +3,16 @@
 </ion-header>
 
 <ion-content>
-  
-
   <div class="centered-image">
     <img src="assets/img/logo.png" alt="logo">
   </div>
 
-  
+  <ion-card color="purple">
+    <h1 style="color: azure;">
+      Bienvenido {{mensaje}}
+    </h1>  
+    
+  </ion-card>
   
   <ion-fab vertical="top" horizontal="end">
     <ion-fab-button [routerLink]="['/formulario']">
@@ -17,25 +20,15 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-card>
-    <ion-label *ngIf="nombreUsuario" class="ion-text-center">
-      Bienvenido {{ nombreUsuario }}
-    </ion-label>
-  </ion-card>
-  
-
   <ion-fab vertical="top" horizontal="start">
-   <ion-fab-button [routerLink]="['/login']">
-    <ion-icon name="exit-outline"></ion-icon>  </ion-fab-button>
+    <ion-fab-button [routerLink]="['/login']">
+      <ion-icon name="exit-outline"></ion-icon>
+    </ion-fab-button>
   </ion-fab>
 
-
-
-  <ion-card >
-    
+  <ion-card>
     <ion-card-header>
-      <ion-card-title> Mis Mascotas</ion-card-title>
-      
+      <ion-card-title>Mis Mascotas</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>

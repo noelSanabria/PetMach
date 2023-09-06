@@ -1,0 +1,7 @@
+BOTONES
+
+<ion-button [routerLink]="['/elegir-mascota', formulariologin?.get('nombre')?.value]" class="gradient-button">Iniciar sesión</ion-button>
+
+
+
+<ion-button (click)="iniciarSesion()" class="gradient-button">Iniciar sesión</ion-button>
