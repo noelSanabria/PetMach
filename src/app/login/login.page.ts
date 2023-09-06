@@ -1,6 +1,7 @@
-import { AlertController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { AnimationController, IonCard } from '@ionic/angular';
+
 import {
   FormGroup,
   FormControl,
@@ -15,13 +16,11 @@ import {
 })
 export class LoginPage implements OnInit {
 
+  
   formLogin = {
-    
     nombre:  "",
     password: ""
   }
-
-  
   constructor(private router: Router ) {  }
 
   ngOnInit(): void {
