@@ -5,6 +5,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -17,7 +18,8 @@ export class RegistroPage implements OnInit {
 
   formularioregistro: FormGroup;
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder,
+    public alertController: AlertController) {
     this.formularioregistro = this.fb.group({
       'correo': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required),
@@ -28,8 +30,18 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
 
-  guardar() {
+  async guardar() {
     var f = this.formularioregistro.value;
+
+    if(this.formularioregistro.invalid){
+      const alert = await this.alertController.create({
+        message: 'Tienes que llenar todos los datos!',
+        buttons: ['Aceptar'],
+      });
+
+      await alert.present();
+      return;
+    };
   }
 
 }
