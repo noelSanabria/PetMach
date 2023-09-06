@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import {AlertController} from '@ionic/angular';
+import {Component, OnInit} from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +16,9 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   formulariologin: FormGroup;
 
-  constructor(public fb: FormBuilder, private router: Router) {
+  constructor(public fb: FormBuilder,
+    public AlertController: AlertController,
+    private router: Router) {
     this.formulariologin = this.fb.group({
       'nombre': new FormControl("", Validators.required),
       'password': new FormControl("", [
