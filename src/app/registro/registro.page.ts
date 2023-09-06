@@ -42,7 +42,14 @@ export class RegistroPage implements OnInit {
 
       await alert.present();
       return;
-    };
+    }
+
+var usuario = {
+  correo: f.correo,
+  password: f.password
+}
+
+localStorage.setItem('usuario',JSON.stringify(usuario));
   }
 
 }
