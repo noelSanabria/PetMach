@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
   },
   {
-    path: 'formulario',
-    loadChildren: () => import('./formulario/formulario.module').then( m => m.FormularioPageModule)
-  },
-  {
     path: 'mascota-combatible',
     loadChildren: () => import('./mascota-combatible/mascota-combatible.module').then( m => m.MascotaCombatiblePageModule)
   },
