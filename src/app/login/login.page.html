@@ -1,7 +1,7 @@
 <ion-header style="background-color: #1c0e2e;">
 </ion-header>
 
-<ion-content>
+<ion-content class="page-transition">
   <ion-card class="purple-card">
     <ion-card-content>
       <div class="centered-image">
@@ -22,7 +22,7 @@
           </ion-item>
         </ion-card>
       <ion-buttons class="ion-justify-content-center">
-        <ion-button (click)="iniciarSesion()" class="gradient-button">Iniciar sesión</ion-button>
+        <ion-button (click)="iniciarSesion(); play()" class="gradient-button">Iniciar sesión </ion-button>
       </ion-buttons>
 
       <br>
@@ -41,10 +41,13 @@
       <br>
     </ion-card-content>
   </ion-card>
+  <ion-buttons>
 
 
-
-  
+    <ion-button (click)="stop()">Stop</ion-button>
+  </ion-buttons>
 
 
 </ion-content>
+
+

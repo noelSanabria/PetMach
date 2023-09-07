@@ -37,3 +37,7 @@ ion-content{
 
   --background : #1c0e2e
 }
+
+.page-transition {
+  transition: transform 3s ease-in-out, opacity 9s ease-in-out;
+}
