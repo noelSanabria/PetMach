@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" color="#1c0e2e"></ion-back-button>
+      <ion-back-button defaultHref="/elegir-mascota" color="#1c0e2e"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -155,6 +155,8 @@
       </ion-item>
     </ion-card>
 
-    <ion-button [routerLink]="['/mascota-combatible']" (click)="ver()" class="gradient-button">Ver Compatibilidad</ion-button>
+    <ion-button [routerLink]="['/mascota-combatible']" (click)="ver()" class="gradient-button" [disabled]="!botonHabilitado">Ver Compatibilidad</ion-button>
+
   </form>
+
 </ion-content>

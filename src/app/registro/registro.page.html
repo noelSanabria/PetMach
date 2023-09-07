@@ -1,7 +1,7 @@
-<ion-header class="ion-no-border" >
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/" ></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
@@ -17,9 +17,12 @@
       <form [formGroup]="formularioregistro" class="color">
         <ion-card>
           <ion-item>
-            <ion-label position="floating">Correo </ion-label>
+            <ion-label position="floating">Correo</ion-label>
             <ion-input formControlName="correo"></ion-input>
           </ion-item>
+          <div *ngIf="formularioregistro.get('correo')?.hasError('email') && formularioregistro.get('correo')?.touched" class="error-message">
+            El correo electrónico debe tener un formato válido (ejemplo@correo.com).
+          </div>
         </ion-card>
 
         <ion-card>
@@ -27,22 +30,23 @@
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
+          <div *ngIf="formularioregistro.get('password')?.hasError('pattern') && formularioregistro.get('password')?.touched" class="error-message">
+            La contraseña debe tener al menos 4 números, 3 caracteres y 1 letra mayúscula.
+          </div>
         </ion-card>
 
         <ion-card>
           <ion-item>
-            <ion-label position="floating"> confirmar Contraseña</ion-label>
+            <ion-label position="floating">Confirmar Contraseña</ion-label>
             <ion-input formControlName="confirmacionPassword" type="password"></ion-input>
           </ion-item>
         </ion-card>
-
       </form>
 
       <ion-buttons class="ion-justify-content-center">
         <ion-button (click)="guardar()" class="gradient-button">Registrarse</ion-button>
       </ion-buttons>
 
-
       <br>
       <br>
       <br>
@@ -51,10 +55,7 @@
       <br>
       <br>
       <br>
-
-
+      
     </ion-card-content>
-
   </ion-card>
 </ion-content>
-

@@ -5,7 +5,7 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-formulario',
@@ -13,40 +13,42 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./formulario.page.scss'],
 })
 
-
 export class FormularioPage implements OnInit {
 
   formulariocompatibilidad: FormGroup;
+  botonHabilitado = false;
 
-  constructor(public fb: FormBuilder,
-    public alertController:AlertController) {
+  constructor(
+    public fb: FormBuilder,
+    public alertController: AlertController,
+    public navCtrl: NavController
+  ) {
     this.formulariocompatibilidad = this.fb.group({
       'nombre': new FormControl("", [Validators.required]),
       'edad': new FormControl("", [Validators.required])
-    })
-     }
+    });
+
+    this.formulariocompatibilidad.valueChanges.subscribe(() => {
+      this.botonHabilitado = !this.formulariocompatibilidad.invalid;
+    });
+  }
 
   ngOnInit() {
   }
+
   async ver() {
     var f = this.formulariocompatibilidad.value;
 
-    if(this.formulariocompatibilidad.invalid){
+    if (this.formulariocompatibilidad.invalid) {
       const alert = await this.alertController.create({
         header: 'Datos Incompletos',
-        message: 'Tienes que llenar todos los datos',
+        message: 'Tienes que llenar todos los campos.',
         buttons: ['Aceptar']
-      })
+      });
 
       await alert.present();
-      return;
+    } else {
+      this.navCtrl.navigateForward('/siguiente-pagina');
     }
-
-var compatibilidad = {
-  nombre: f.nombre,
-  edad: f.edad
-}
-
   }
-
 }

@@ -37,12 +37,27 @@ export class LoginPage implements OnInit {
     console.log("nombre" + this.formLogin.nombre);
     console.log("password" + this.formLogin.password);
 
-    setTimeout(() => {
-      let datosEnviar: NavigationExtras = {
-        queryParams: { nombreUsuario: this.formLogin.nombre }
-      }
-      this.router.navigate(['/elegir-mascota'], datosEnviar);
-    }, 3000);
+    if (!this.formLogin.nombre) {
+      alert("El campo 'Nombre de Usuario' no puede estar vacío.");
+      return;
+    }
+
+    if (this.validarPassword(this.formLogin.password)) {
+      setTimeout(() => {
+        let datosEnviar: NavigationExtras = {
+          queryParams: { nombreUsuario: this.formLogin.nombre }
+        }
+        this.router.navigate(['/elegir-mascota'], datosEnviar);
+      }, 3000);
+    } else {
+      alert("La contraseña no cumple con los requisitos.");
+    }
+  }
+
+  validarPassword(password: string): boolean {
+    // Validar si la contraseña cumple con los requisitos
+    const regex = /^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]{1}).{8,}$/;
+    return regex.test(password);
   }
 
   play() {
