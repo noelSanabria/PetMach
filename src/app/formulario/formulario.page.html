@@ -12,18 +12,18 @@
     <img src="assets/img/logo.png" alt="logo">
   </div>
 
-  <form class="color">
+  <form [formGroup]="formulariocompatibilidad" class="color">
     <ion-card>
       <ion-item>
         <ion-label position="floating">Nombre:</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="nombre" type="text"></ion-input>
       </ion-item>
     </ion-card>
 
     <ion-card>
       <ion-item>
         <ion-label position="floating">Edad:</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="edad" type="number"></ion-input>
       </ion-item>
     </ion-card>
 
@@ -155,6 +155,6 @@
       </ion-item>
     </ion-card>
 
-    <ion-button [routerLink]="['/mascota-combatible']" class="gradient-button">Ver Compatibilidad</ion-button>
+    <ion-button [routerLink]="['/mascota-combatible']" (click)="ver()" class="gradient-button">Ver Compatibilidad</ion-button>
   </form>
 </ion-content>
