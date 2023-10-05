@@ -1,0 +1,69 @@
+{
+  "productos": [
+    {
+      "id": 10,
+      "nombre": "Refrigerador",
+      "descripcion": "Refrigerador Industrial",
+      "precio": 1000,
+      "fecha": "2023-09-21T09:36:26.363Z",
+      "cantidad": 200
+    },
+    {
+      "id": 1011,
+      "nombre": "Secadora",
+      "descripcion": "Secadora Industrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:10:14.155Z",
+      "cantidad": 200
+    },
+    {
+      "id": 1023,
+      "nombre": "Cafetera",
+      "descripcion": "Cafetera Industrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:12:51.951Z",
+      "cantidad": 200
+    },
+    {
+      "id": 14,
+      "nombre": "Congeladora",
+      "descripcion": "Congeladora Industrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:14:07.139Z",
+      "cantidad": 200
+    },
+    {
+      "id": 15,
+      "nombre": "Aspiradora",
+      "descripcion": "Aspiradora Industrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:17:36.628Z",
+      "cantidad": 200
+    },
+    {
+      "id": 151,
+      "nombre": "Pulidora",
+      "descripcion": "Pulidora Industrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:32:40.338Z",
+      "cantidad": 200
+    },
+    {
+      "id": 1511,
+      "nombre": "Califont",
+      "descripcion": "Califont Insdustrial",
+      "precio": 100,
+      "fecha": "2023-08-31T04:47:59.716Z",
+      "cantidad": 200
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "macarena@soco.cl",
+      "first_name": "Macarena Constanza",
+      "last_name": "Piña",
+      "email": "macarena@soco.cl",
+      "clave": "123456"
+    }
+  ]
+}
