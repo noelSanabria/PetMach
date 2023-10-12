@@ -5,43 +5,39 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = 
 
 [
+ 
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'usuario-all',
+    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
+  },
+  {
+    path: 'usuario-detail',
+    loadChildren: () => import('./usuario/usuario-detail/usuario-detail.module').then( m => m.UsuarioDetailPageModule)
+  },
+  {
+    path: 'usuario-edit',
+    loadChildren: () => import('./usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
+  },
+  {
+    path: 'usuario-list',
+    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
+  },
   
   {
-    path: 'cliente/listar',
-    loadChildren: () => import('./cliente/listar/cliente.listar.module').then(m => m.ClienteListarPageModule)
-  },
-  {
-    path: 'cliente/agregar',
-    loadChildren: () => import('./cliente/agregar/cliente.agregar.module').then(m => m.ClienteAgregarPageModule)
-  },
-  {
-    path: 'cliente/actualizar',
-    loadChildren: () => import('./cliente/actualizar/cliente.actualizar.module').then(m => m.ClienteActualizarPageModule)
-  },
-  {
-    path: 'cliente/eliminar',
-    loadChildren: () => import('./cliente/eliminar/cliente.eliminar.module').then(m => m.ClienteEliminarPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
 
   {
-    path: 'cliente/leer',
-    loadChildren: () => import('./cliente/leer/cliente.leer.module').then(m => m.ClienteLeerPageModule)
+    path: 'usuario-add',
+    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
   },
   
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     path: 'product-add',
     loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule)
@@ -61,22 +57,6 @@ const routes: Routes =
   {
     path: 'product-all',
     loadChildren: () => import('./producto/product-all/product-all.module').then( m => m.ProductAllPageModule)
-  },
-
-
-  
-
-
-
-
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
   },
   {
     path: 'login',
