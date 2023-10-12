@@ -19,7 +19,7 @@ export class UsuarioAddPage implements OnInit {
   usuarioForm!: FormGroup;
   // Generalmente se usa una interface, sin embargo para jugar utilizaremos  una clase
   usuario: ClUsuario = {
-    id: "macarena@soco.cl"
+    id: '1'
     , first_name: 'Macarena Constanza'
     , last_name: 'Piña'
     , email: "macarena@soco.cl"

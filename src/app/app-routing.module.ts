@@ -11,16 +11,26 @@ const routes: Routes =
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
+  {
+    path: 'usuario-all',
+    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
+  },
+
+
+
+
+
   {
     path: 'usuario-all',
     loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
   },
   {
-    path: 'usuario-detail',
+    path: 'usuario-detail/:id',
     loadChildren: () => import('./usuario/usuario-detail/usuario-detail.module').then( m => m.UsuarioDetailPageModule)
   },
   {
-    path: 'usuario-edit',
+    path: 'usuario-edit/:id',
     loadChildren: () => import('./usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
   },
   {
