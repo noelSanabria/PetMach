@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Cámara
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container" class="ion-text-center"> 
+    <img [src]="getPhoto()" style="width: 400px;">
+    <ion-button (click)="takePicture()" class="ion-margin-top">Tomar foto</ion-button>
+   
+  </div>
+</ion-content>

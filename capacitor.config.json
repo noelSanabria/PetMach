@@ -1,1 +1,16 @@
-{}
+{
+    "appId": "com.example.myapp",
+    "appName": "MyApp",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "www",
+    "plugins": {
+      "Camera": {
+        "web": {
+          "useMocks": true
+        }
+      }
+    },
+    "cordova": {}
+  }
+  

@@ -12,14 +12,6 @@ const routes: Routes =
     pathMatch: 'full'
   },
 
-  {
-    path: 'usuario-all',
-    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
-  },
-
-
-
-
 
   {
     path: 'usuario-all',
@@ -76,6 +68,9 @@ const routes: Routes =
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
+
+  
+
   {
     path: 'restablecer-contrasena',
     loadChildren: () => import('./restablecer-contrasena/restablecer-contrasena.module').then( m => m.RestablecerContrasenaPageModule)
@@ -92,10 +87,27 @@ const routes: Routes =
     path: 'mascota-combatible',
     loadChildren: () => import('./mascota-combatible/mascota-combatible.module').then( m => m.MascotaCombatiblePageModule)
   },
+
+
+  {
+    path: 'camara',
+    loadChildren: () => import('./camara/camara.module').then( m => m.CamaraPageModule)
+  },
+
+
+{
+    path: 'localizacion',
+    loadChildren: () => import('./localizacion/localizacion.module').then( m => m.LocalizacionPageModule)
+  },
+
   {
     path: '**',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
+  
+
+  
+  
   
 
 
