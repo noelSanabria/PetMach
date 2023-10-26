@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>usuario-list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>
+      <font color="red">Utilizando un Accesador
+        <ion-button [routerLink]="['/usuario-add']">Agregar</ion-button>
+      </font>
+    </ion-label>
+  </ion-item>
+  <ion-list padding>
+    <!-- Recorremos el arreglo de registros utilizando item-->
+    <ion-item *ngFor="let p of usuarios">
+      <!-- Icono al inicio (start)-->
+      <ion-icon name="star" slot="start"></ion-icon>
+      <!-- Campos de item -->
+      <ion-label>{{p.id | currency:' ':true:'1.0-2'}}</ion-label>
+      <!-- Icono al final -->
+      <ion-icon name="information-circle" slot="end"></ion-icon>
+      <!-- routerlink salta a otra pagina-->
+      <ion-button [routerLink]="['/usuario-edit/',p.id]">Edit</ion-button><br />
+      <!-- routerlink salta a otra pagina, pero con id del item-->
+      <ion-button [routerLink]="['/usuario-detail',p.id]">Detail</ion-button><br />
+    </ion-item>
+  </ion-list>
+
+</ion-content>

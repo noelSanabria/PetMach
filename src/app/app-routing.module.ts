@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 
-const routes: Routes = 
+const routes: Routes =
 
 [
-  
+
   {
     path: 'cliente/listar',
     loadChildren: () => import('./cliente/listar/cliente.listar.module').then(m => m.ClienteListarPageModule)
@@ -27,8 +27,8 @@ const routes: Routes =
     path: 'cliente/leer',
     loadChildren: () => import('./cliente/leer/cliente.leer.module').then(m => m.ClienteLeerPageModule)
   },
-  
-  
+
+
 
 
 
@@ -64,7 +64,7 @@ const routes: Routes =
   },
 
 
-  
+
 
 
 
@@ -102,11 +102,33 @@ const routes: Routes =
     path: 'mascota-combatible',
     loadChildren: () => import('./mascota-combatible/mascota-combatible.module').then( m => m.MascotaCombatiblePageModule)
   },
+
+  {
+    path: 'usuario-add',
+    loadChildren: () => import('./usuario/usuario-add/usuario-add.module').then( m => m.UsuarioAddPageModule)
+  },
+  {
+    path: 'usuario-all',
+    loadChildren: () => import('./usuario/usuario-all/usuario-all.module').then( m => m.UsuarioAllPageModule)
+  },
+  {
+    path: 'usuario-detail',
+    loadChildren: () => import('./usuario/usuario-detail/usuario-detail.module').then( m => m.UsuarioDetailPageModule)
+  },
+  {
+    path: 'usuario-edit',
+    loadChildren: () => import('./usuario/usuario-edit/usuario-edit.module').then( m => m.UsuarioEditPageModule)
+  },
+  {
+    path: 'usuario-list',
+    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
+  },
   {
     path: '**',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-  
+
+
 
 
 

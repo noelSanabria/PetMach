@@ -3,50 +3,43 @@ import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Valida
 import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ClProducto } from '../model/ClProducto';
-import { ProductServiceService } from '../product-service.service';
-
+import { Usuario } from '../model/Usuario';
+import { UsuarioServiceService } from '../usuario-servicio.servicio';
 
 @Component({
-  selector: 'app-product-add',
-  templateUrl: './product-add.page.html',
-  styleUrls: ['./product-add.page.scss'],
+  selector: 'app-usuario-add',
+  templateUrl: './usuario-add.page.html',
+  styleUrls: ['./usuario-add.page.scss'],
 })
-export class ProductAddPage implements OnInit {
-  //Creamos una variable del tipo FormGroup
+export class UsuarioAddPage implements OnInit {
+//Creamos una variable del tipo FormGroup
   // ! ==> Con esto le decimos a TS, que sabemos que la variable no esta inicializada
   //          y que estamos seguro que cuando se ejecute no será null
-  productForm!: FormGroup;
+  usuarioForm!: FormGroup;
   // Generalmente se usa una interface, sin embargo para jugar utilizaremos  una clase
-  producto: ClProducto = {
-    id: 1511
-    , nombre: 'Harrys el Magnifico'
-    , descripcion: 'El Ingenioso'
-    , precio: 100
-    , fecha: new Date()
-    , cantidad: 200
+  usuario: Usuario = {
+  id: 1505
+  , nombre: 'Harrys el Magnifico'
+  , mail: 'harrys@elmagnifico.com'
+  , password: 'harrys1234'
+  , cfecha: new Date
   };
-
-  // Injectamos FormBuilder, el cual nos permitirá realizar validaciones
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     // Injectamos las librerías necesarias
     private loadingController: LoadingController,
-    private restApi: ProductServiceService,
+    private restApi: UsuarioServiceService,
     private router: Router,
   ) { }
 
-  // Antes que inicie en pantalla
-  // especificamos las validaciones,
-  //    por medio de formBuilder injectado en el constructor
-  ngOnInit() {
-    // Especificamos que todos los campos son obligatorios
-    this.productForm = this.formBuilder.group({
-      "prod_name": [null, Validators.required],
-      'prod_desc': [null, Validators.required],
-      'prod_price': [null, Validators.required],
-      'prod_cantidad': [null, Validators.required]
-    });
+  ngOnInit() {// Especificamos que todos los campos son obligatorios
+    this.usuarioForm = this.formBuilder.group({
+      "user_name": [null, Validators.required],
+      'user_mail': [null, Validators.required],
+      'user_pass': [null, Validators.required],
+    })
   }
+
   // se ejecutará cuando presione el Submit
   async onFormSubmit(form: NgForm) {
     console.log("onFormSubmit del Product ADD")
@@ -59,10 +52,10 @@ export class ProductAddPage implements OnInit {
     await loading.present();
 
     // Ejecuta el método del servicio y los suscribe
-    await this.restApi.addProduct(this.producto)
+    await this.restApi.addUsuario(this.usuario)
       .subscribe({
         next: (res) => {
-          console.log("Next AddProduct Page",res)
+          console.log("Next AddUsuario Page",res)
           loading.dismiss(); //Elimina la espera
           if (res== null){ // No viene respuesta del registro
             console.log("Next No Agrego, Ress Null ");
@@ -70,11 +63,11 @@ export class ProductAddPage implements OnInit {
           }
           // Si viene respuesta
           console.log("Next Agrego SIIIIII Router saltaré ;",this.router);
-          this.router.navigate(['/product-list']);
+          this.router.navigate(['/usuario-list']);
         }
         , complete: () => { }
         , error: (err) => {
-          console.log("Error AddProduct Página",err);
+          console.log("Error AddUsuario Página",err);
           loading.dismiss(); //Elimina la espera
         }
       });
