@@ -7,6 +7,7 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrls: ['./localizacion.page.scss'],
 })
 export class LocalizacionPage implements OnInit {
+  
 
   lat:any;
 lng:any;
