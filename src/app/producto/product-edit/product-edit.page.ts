@@ -5,7 +5,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
-import { ClProducto } from '../model/ClProducto';
+import { ClProducto } from '../model/Clproducto';
 import { ProductServiceService } from '../product-service.service';
 
 @Component({
@@ -17,8 +17,25 @@ export class ProductEditPage implements OnInit {
   // FormGroup para validaciones
   productForm!: FormGroup;
   // Esquema a utilizar en el Html
-  producto: ClProducto = { id: 1, nombre: '', descripcion: '', precio: 0, fecha: new Date(), cantidad: 0 };
-  id: any = '';
+  producto: ClProducto = {   
+      codigo: "08-G3",
+      nombreprod: "",
+      precio: 0,
+      cantidad: 0,
+      rut: 0,
+      dv: "0",
+      enfermedad: "0",
+      fonocontacto: 0,
+      categoria: "0",
+      editorial: "0",
+      raza: "0",
+      edad: 0,
+      altura: 0,
+      hrini: "0",
+      hrfin: "0",
+      direccion: "0",};
+      idProducto: any = '';
+  
   //prod_name: string = '';
   //prod_desc: string = '';
   //prod_price:number=null;
@@ -41,12 +58,13 @@ export class ProductEditPage implements OnInit {
       'prod_name': [null, Validators.required],
       'prod_desc': [null, Validators.required],
       'prod_price': [null, Validators.required],
-      'prod_cantidad': [null, Validators.required]
+      'prod_cantidad': [null, Validators.required],
+      'prod_direccion': [null, Validators.required]
     });
   }
   async onFormSubmit(form: NgForm) {
-    console.log("onFormSubmit ID:" + this.id)
-    this.producto.id = this.id;
+    console.log("onFormSubmit ID:" + this.idProducto)
+    this.producto.idProducto = this.idProducto;
     /*this.producto.nombre = form.prod_name;
     this.producto.descripcion = form.prod_desc;
     this.producto.precio = form.prod_price;
@@ -54,12 +72,12 @@ export class ProductEditPage implements OnInit {
     */
     // si envio form, envio los nombres del campo del formulario
     //await this.restApi.updateProduct(this.id, form)
-    await this.restApi.updateProduct(this.id, this.producto)
+    await this.restApi.updateProduct(this.idProducto, this.producto)
       .subscribe({
         next: (res) => {
-          let id = res['id'];
+          let idProducto = res['idProducto'];
           //this.router.navigate([ 'detail', { outlets: { details: id }} ]);
-          this.router.navigate(['/product-detail/' + this.id]);
+          this.router.navigate(['/product-detail/' + this.idProducto]);
         }
         , complete: () => { }
         , error: (err) => { console.log(err); }
@@ -68,7 +86,7 @@ export class ProductEditPage implements OnInit {
   }
 
   // Método que permite leer el producto
-  async getProduct(id: number) {
+  async getProduct(idProducto: String) {
     // Crea Wait
       const loading = await this.loadingController.create({
         message: 'Loading...'
@@ -76,25 +94,28 @@ export class ProductEditPage implements OnInit {
       // Muestra Wait
       await loading.present();
       // Obtiene el Observable
-      await this.restApi.getProduct(id + "")
+      await this.restApi.getProduct(idProducto)
         .subscribe({
           next: (data) => {
             console.log("getProductID data****");
             console.log(data);
             // Si funciona Rescata el los datos
-            this.id = data.id;
+            this.idProducto = data.idProducto;
             // Actualiza los datos
             this.productForm.setValue({
-              prod_name: data.nombre,
-              prod_desc: data.descripcion,
-              prod_price: data.precio,
-              prod_cantidad: data.cantidad
+              
+              prod_name: data.nombreprod,
+              prod_price:data.precio,
+              prod_cantidad:data.cantidad,
+              prod_desc: data.editorial,
+              prod_direccion:data.direccion
+
             });
             loading.dismiss();
           }
           , complete: () => { }
           , error: (err) => {
-            console.log("getProductID Errr****+");
+            console.log("getProductidProducto Errr****+");
             console.log(err);
             loading.dismiss();
           }
@@ -112,7 +133,7 @@ export class ProductEditPage implements OnInit {
           text: 'Okay',
           handler: () => {
             //Si funciona el actualizar navega a listar
-            this.router.navigate(['/product-list/']);
+            this.router.navigate(['/product-list']);
           }
         }
       ]

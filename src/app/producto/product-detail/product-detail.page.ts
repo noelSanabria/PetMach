@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // Import a utilizar 
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { ClProducto } from '../model/ClProducto';
+import { ClProducto } from '../model/Clproducto';
 import { ProductServiceService } from '../product-service.service';
 
 
@@ -15,12 +15,23 @@ import { ProductServiceService } from '../product-service.service';
 export class ProductDetailPage implements OnInit {
   // Creamos registro a utilizar en el Html
   producto: ClProducto = {
-    id: 1511
-    , nombre: 'Harrys el Magnifico'
-    , descripcion: 'El Ingenioso'
-    , precio: 100
-    , fecha: new Date()
-    , cantidad: 200
+    codigo: "0",
+    nombreprod: "",
+    precio: 10000,
+    cantidad: 96,
+    rut: 0,
+    dv: "0",
+    enfermedad: "0",
+    fonocontacto: 0,
+    categoria: "0",
+    editorial: "0",
+    raza: "0",
+    edad: 0,
+    altura: 0,
+    hrini: "0",
+    hrfin: "0",
+    direccion: "0",
+    
   };
 
   // Injectamos Librerías a utilizar

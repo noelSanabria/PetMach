@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 // Importamos Librerías
 import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClProducto } from '../model/ClProducto';
+import { ClProducto } from '../model/Clproducto';
 //import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductServiceService } from '../product-service.service';
 
@@ -25,6 +25,10 @@ export class ProductListPage implements OnInit {
   ngOnInit() {
     this.getProducts();
   }
+  filtrarProductosPorCodigo(productos: any[], codigo: '08-G05'): any[] {
+    return productos.filter(producto => producto.codigo >= codigo);
+  }
+  
 
   // Método  que rescta los productos
   async getProducts() {
@@ -34,27 +38,19 @@ export class ProductListPage implements OnInit {
       message: 'Harrys Loading...'
     });
     // Muestra el Wait
-    await loading.present();
-    console.log("Entrando :");
-    // Obtiene el Observable del servicio
-    await this.restApi.getProducts()
-      .subscribe({
-        next: (res) => { 
-          console.log("Res:" + res);
-  // Si funciona asigno el resultado al arreglo productos
-          this.productos = res;
-          console.log("thisProductos:",this.productos);
-          loading.dismiss();
-        }
-        , complete: () => { }
-        , error: (err) => {
-  // Si da error, imprimo en consola.
-          console.log("Err:" + err);
-          loading.dismiss();
-        }
-      })
+    await this.restApi.getProducts().subscribe({
+      next: (res) => {
+        // Filtra los productos que tienen el código
+        this.productos = res.filter(producto => producto.codigo === '08-G05');
+        loading.dismiss();
+      },
+      complete: () => {},
+      error: (err) => {
+        console.log("Err:" + err);
+        loading.dismiss();
+      }
+    })
   }
-
 
   
   // drop(event: CdkDragDrop<string[]>) {
