@@ -55,11 +55,9 @@ export class ProductEditPage implements OnInit {
     this.getProduct(this.route.snapshot.params['id']);
     // Especificamos Validaciones por medio de FormGroup
     this.productForm = this.formBuilder.group({
-      'prod_name': [null, Validators.required],
-      'prod_desc': [null, Validators.required],
-      'prod_price': [null, Validators.required],
-      'prod_cantidad': [null, Validators.required],
-      'prod_direccion': [null, Validators.required]
+      'prod_raza': [null, Validators.required],
+      'prod_edad': [null, Validators.required],
+      
     });
   }
   async onFormSubmit(form: NgForm) {
@@ -104,11 +102,9 @@ export class ProductEditPage implements OnInit {
             // Actualiza los datos
             this.productForm.setValue({
               
-              prod_name: data.nombreprod,
-              prod_price:data.precio,
-              prod_cantidad:data.cantidad,
-              prod_desc: data.editorial,
-              prod_direccion:data.direccion
+              prod_raza: data.raza,
+              prod_edad:data.edad,
+             
 
             });
             loading.dismiss();

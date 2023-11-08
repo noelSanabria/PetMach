@@ -7,7 +7,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 // creamos Constantes que utilizaremos en el envio
-const apiUrl = "https://sumativa2.onrender.com/api/productos";
+const apiUrl = "https://sumativa2.onrender.com/api/productos/";
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 @Injectable({
@@ -31,7 +31,7 @@ export class ProductServiceService {
     console.log("Res-api Enviando AddProducto : ", producto);
     // Ojo No lo ejecuta lo declara
     // El Pipe lo intercepta
-    return this.http.post<ClProducto>(apiUrl + "/", producto, httpOptions)
+    return this.http.post<ClProducto>(apiUrl, producto, httpOptions)
       .pipe(  // Tubería
         // tap intersecta la respuesta si no hay error
         tap((producto: ClProducto) => console.log('added product w/:', producto)),

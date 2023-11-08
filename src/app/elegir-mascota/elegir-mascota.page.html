@@ -1,19 +1,16 @@
-<ion-header [translucent]="true">
-  
-</ion-header>
+<ion-header [translucent]="true"></ion-header>
 
-<ion-content >
+<ion-content>
   <div class="centered-image">
     <img src="assets/img/logo.png" alt="logo">
   </div>
 
   <ion-card color="purple">
     <h1 style="color: azure;">
-      Bienvenido {{mensaje}}
-    </h1>  
-    
+      Bienvenido {{ mensaje }}
+    </h1>
   </ion-card>
-  
+
   <ion-fab vertical="top" horizontal="end">
     <ion-fab-button [routerLink]="['/formulario']">
       <ion-icon name="add"></ion-icon>
@@ -30,18 +27,26 @@
     <ion-card-header>
       <ion-card-title>Mis Mascotas</ion-card-title>
     </ion-card-header>
+    <img [src]="fotoMascota" *ngIf="fotoMascota" alt="Foto de mascota" class="captured-image">
+ 
+
     <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <img alt="Silhouette of mountains" src="assets/img/puddle.png" />
-          </ion-thumbnail>
-          <ion-label>Poodle</ion-label>
-        </ion-item>
-      </ion-list>
-      <ion-buttons class="ion-justify-content-center">
-        <ion-button [routerLink]="['/camara']" class="gradient-button">camara</ion-button>
-      </ion-buttons>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <ion-thumbnail slot="start">
+              <img alt="Silhouette of mountains" src="assets/img/puddle.png" />
+            </ion-thumbnail>
+          </ion-col>
+          <ion-col size="10">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
+
+  <ion-button (click)="takePicture()" class="gradient-button">Tomar Foto</ion-button>
+    <ion-button [routerLink]="['/product-add']" class="gradient-button">Agregar</ion-button>
+  <!-- Mostrar la imagen capturada de manera más pequeña debajo del texto "Mascotas" -->
+
 </ion-content>

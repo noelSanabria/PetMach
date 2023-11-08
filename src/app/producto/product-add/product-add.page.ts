@@ -23,7 +23,7 @@ export class ProductAddPage implements OnInit {
   // Generalmente se usa una interface, sin embargo para jugar utilizaremos  una clase
   producto: ClProducto = {
       codigo: "08-G05",
-      nombreprod: "",
+      nombreprod: "0",
       precio: 0,
       cantidad: 0,
       rut: 0,
@@ -32,7 +32,7 @@ export class ProductAddPage implements OnInit {
       fonocontacto: 0,
       categoria: "0",
       editorial: "0",
-      raza: "0",
+      raza: "",
       edad: 0,
       altura: 0,
       hrini: "0",
@@ -55,8 +55,8 @@ export class ProductAddPage implements OnInit {
   ngOnInit() {
     // Especificamos que todos los campos son obligatorios
     this.productForm = this.formBuilder.group({
-      "edad": [null, Validators.required],
-      'raza': [null, Validators.required],
+      "raza": [null, Validators.required],
+      'edad': [null, Validators.required],
       
     });
   }
