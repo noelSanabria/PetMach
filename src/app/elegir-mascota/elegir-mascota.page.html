@@ -1,4 +1,4 @@
-<ion-header [translucent]="true"></ion-header>
+
 
 <ion-content>
   <div class="centered-image">
@@ -23,12 +23,11 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-card>
+  <ion-card *ngFor="let mascota of fotosMascotas">
     <ion-card-header>
-      <ion-card-title>Mis Mascotas</ion-card-title>
+      <ion-card-title>Mascota {{ mascota.id }}</ion-card-title>
     </ion-card-header>
-    <img [src]="fotoMascota" *ngIf="fotoMascota" alt="Foto de mascota" class="captured-image">
- 
+    <img [src]="mascota.foto" *ngIf="mascota.foto" alt="Foto de mascota" class="captured-image">
 
     <ion-card-content>
       <ion-grid>
@@ -38,7 +37,14 @@
               <img alt="Silhouette of mountains" src="assets/img/puddle.png" />
             </ion-thumbnail>
           </ion-col>
-          <ion-col size="10">
+          <ion-col size="8">
+            <p>Raza: {{ raza }}</p>
+            <p>Edad: {{ edad }}</p>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button (click)="eliminarFoto(mascota.id)" color="danger" expand="full">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -46,7 +52,7 @@
   </ion-card>
 
   <ion-button (click)="takePicture()" class="gradient-button">Tomar Foto</ion-button>
-    <ion-button [routerLink]="['/product-add']" class="gradient-button">Agregar</ion-button>
-  <!-- Mostrar la imagen capturada de manera más pequeña debajo del texto "Mascotas" -->
+  <ion-button [routerLink]="['/product-add']" class="gradient-button">Agregar</ion-button>
+  <ion-button [routerLink]="['/localizacion']" class="gradient-button">Obtener Ubicacion</ion-button>
 
 </ion-content>

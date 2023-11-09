@@ -12,11 +12,24 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 export class ElegirMascotaPage implements OnInit {
   mensaje: string = "";
   fotoMascota: SafeResourceUrl | undefined;
+  fotosMascotas: { id: number, foto: SafeResourceUrl }[] = [];
+  informacionExtra: string = "";
+  raza: string = "";
+  edad: number = 0;
 
   constructor(private rutaActiva: ActivatedRoute, private sanitizer: DomSanitizer) {
     this.rutaActiva.queryParams.subscribe((params) => {
       if (params['nombreUsuario']) {
         this.mensaje = params['nombreUsuario'];
+      }
+      if (params['informacionExtra']) {
+        this.informacionExtra = params['informacionExtra'];
+      }
+      if (params['raza']) {
+        this.raza = params['raza'];
+      }
+      if (params['edad']) {
+        this.edad = +params['edad']; // Convierte la cadena a número
       }
     });
   }
@@ -32,7 +45,16 @@ export class ElegirMascotaPage implements OnInit {
     });
 
     if (image && image.dataUrl) {
-      this.fotoMascota = this.sanitizer.bypassSecurityTrustResourceUrl(image.dataUrl);
+      const nuevaFoto = {
+        id: this.fotosMascotas.length + 1,
+        foto: this.sanitizer.bypassSecurityTrustResourceUrl(image.dataUrl)
+      };
+
+      this.fotosMascotas.push(nuevaFoto);
     }
+  }
+
+  eliminarFoto(id: number) {
+    this.fotosMascotas = this.fotosMascotas.filter(mascota => mascota.id !== id);
   }
 }
