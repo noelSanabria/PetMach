@@ -2,6 +2,10 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
+import { AuthService } from '../auth.service';
+import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-login',
@@ -18,7 +22,7 @@ export class LoginPage implements OnInit {
     password: ""
   }
 
-  constructor(private router: Router, private animationCtrl: AnimationController) { }
+  constructor(private router: Router, private animationCtrl: AnimationController,private authService: AuthService, private navCtrl: NavController, private storage: Storage) { }
 
   ngOnInit(): void {
   }
