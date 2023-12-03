@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { AlertController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router'; // Importar Router
+import { AuthService } from '../auth.service';
+import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-registro',
@@ -10,81 +10,98 @@ import { Router } from '@angular/router'; // Importar Router
 })
 export class RegistroPage implements OnInit {
 
-  formularioregistro: FormGroup;
+  contrasena: string = '';
+  correo: string = '';
+  nombre: string = '';
+  apellido: string = '';
+  mostrarMensaje: boolean = false;
+  mostrarMensajeCorreo: boolean = false;
+  mostrarMensajeNombre: boolean = false;
+  mostrarMensajeApellido: boolean = false;
+  correoValido: boolean = false;
+  contrasenaValida: boolean = false;
+  nombreValido: boolean = false;
+  apellidoValido: boolean = false;
+  registroExitoso: boolean = false;
 
-  constructor(
-    public fb: FormBuilder,
-    public alertController: AlertController,
-    public toastController: ToastController, 
-    public router: Router 
-  ) {
-    this.formularioregistro = this.fb.group({
-      'correo': new FormControl("", [Validators.required, Validators.email]),
-      'password': new FormControl("", Validators.required),
-      'confirmacionPassword': new FormControl("", Validators.required)
-    });
-  }
+  constructor(private authService: AuthService, private navCtrl: NavController, private storage: Storage) { }
 
   ngOnInit() {
   }
 
-  async guardar() {
-    const f = this.formularioregistro.value;
-
-    
-    if (this.formularioregistro.get('correo')?.hasError('email')) {
-      const alert = await this.alertController.create({
-        header: 'Correo Electrónico Inválido',
-        message: 'Por favor, ingresa un correo electrónico válido.',
-        buttons: ['Aceptar'],
-      });
-
-      await alert.present();
-      return;
+  async register() {
+    if (this.correoValido && this.contrasenaValida && this.nombreValido && this.apellidoValido) {
+      const registered = await this.authService.register(this.nombre, this.contrasena);
+      if (registered) {
+        console.log('Usuario registrado correctamente', this.nombre);
+        this.registroExitoso = true;
+        setTimeout(() => {
+          this.navCtrl.navigateRoot(['/login']);
+        }, 3000); // Redirige al usuario a la página de inicio de sesión después de 3 segundos
+      } else {
+        console.log('Error al registrar el usuario');
+      }
+    } else {
+      // Mostrar mensaje de validación general
+      this.mostrarMensaje = true;
+      setTimeout(() => {
+        this.mostrarMensaje = false;
+      }, 3000);
     }
-
-    
-    if (!this.validarPassword(f.password)) {
-      const alert = await this.alertController.create({
-        header: 'Contraseña Inválida',
-        message: 'La contraseña debe tener al menos 4 números, 3 caracteres y 1 letra mayúscula.',
-        buttons: ['Aceptar'],
-      });
-
-      await alert.present();
-      return;
-    }
-
-    if (this.formularioregistro.invalid) {
-      const alert = await this.alertController.create({
-        header: 'Datos Incompletos',
-        message: 'Tienes que llenar todos los datos!',
-        buttons: ['Aceptar'],
-      });
-
-      await alert.present();
-      return;
-    }
-
-    
-
-    
-    this.router.navigate(['/login']);
-
-    
-    const toast = await this.toastController.create({
-      message: 'Registro exitoso. Puede iniciar sesión ahora.',
-      duration: 3000,
-      position: 'top', 
-      color: 'success'
-    });
-
-    await toast.present();
   }
 
-  validarPassword(password: string): boolean {
-    // Validar si la contraseña cumple con los requisitos
-    const regex = /^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]{1}).{8,}$/;
-    return regex.test(password);
+  validarContrasena() {
+    if (this.contrasena === '') {
+      this.mostrarMensaje = false;
+      this.contrasenaValida = false;
+    } else {
+      const regex = /^(?=.*[0-9].*[0-9].*[0-9].*[0-9])(?=.*[A-Z])(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])([a-zA-Z0-9]+)$/;
+
+      if (regex.test(this.contrasena)) {
+        this.mostrarMensaje = false;
+        this.contrasenaValida = true;
+      } else {
+        this.mostrarMensaje = true;
+        this.contrasenaValida = false;
+      }
+    }
+  }
+
+  validarCorreo() {
+    const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (this.correo === '') {
+      this.mostrarMensajeCorreo = false;
+    } else if (regexCorreo.test(this.correo)) {
+      this.mostrarMensajeCorreo = false;
+      this.correoValido = true;
+    } else {
+      this.mostrarMensajeCorreo = true;
+      this.correoValido = false;
+    }
+  }
+
+  validarNombre() {
+    const regexNombre = /^[a-zA-Z]+$/;
+
+    if (regexNombre.test(this.nombre)) {
+      this.mostrarMensajeNombre = false;
+      this.nombreValido = true;
+    } else {
+      this.mostrarMensajeNombre = true;
+      this.nombreValido = false;
+    }
+  }
+
+  validarApellido() {
+    const regexApellido = /^[a-zA-Z]+$/;
+
+    if (regexApellido.test(this.apellido)) {
+      this.mostrarMensajeApellido = false;
+      this.apellidoValido = true;
+    } else {
+      this.mostrarMensajeApellido = true;
+      this.apellidoValido = false;
+    }
   }
 }

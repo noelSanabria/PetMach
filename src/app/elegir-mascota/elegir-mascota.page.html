@@ -1,6 +1,4 @@
-
-
-<ion-content>
+<ion-content >
   <div class="centered-image">
     <img src="assets/img/logo.png" alt="logo">
   </div>
@@ -9,7 +7,7 @@
     <h1 style="color: azure;">
       Bienvenido {{ mensaje }}
     </h1>
-  </ion-card>
+s  </ion-card>
 
   <ion-fab vertical="top" horizontal="end">
     <ion-fab-button [routerLink]="['/formulario']">
@@ -38,8 +36,7 @@
             </ion-thumbnail>
           </ion-col>
           <ion-col size="8">
-            <p>Raza: {{ raza }}</p>
-            <p>Edad: {{ edad }}</p>
+            
           </ion-col>
           <ion-col size="2">
             <ion-button (click)="eliminarFoto(mascota.id)" color="danger" expand="full">

@@ -1,61 +1,63 @@
-<ion-header class="ion-no-border">
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Registro</ion-title>
+    <ion-title>
+      Registro
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" fullscream>
-  <ion-card class="purple-card">
+<ion-content>
+  <ion-card>
     <ion-card-content>
-      <div class="centered-image">
-        <img src="assets/img/logo.png" alt="logo">
-      </div>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="nombre" (ionChange)="validarNombre()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="mostrarMensajeNombre" color="danger">
+        <ion-text>
+          Ingrese un nombre válido (solo letras).
+        </ion-text>
+      </ion-item>
 
-      <form [formGroup]="formularioregistro" class="color">
-        <ion-card>
-          <ion-item>
-            <ion-label position="floating">Correo</ion-label>
-            <ion-input formControlName="correo"></ion-input>
-          </ion-item>
-          <div *ngIf="formularioregistro.get('correo')?.hasError('email') && formularioregistro.get('correo')?.touched" class="error-message">
-            El correo electrónico debe tener un formato válido (ejemplo@correo.com).
-          </div>
-        </ion-card>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="apellido" (ionChange)="validarApellido()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="mostrarMensajeApellido" color="danger">
+        <ion-text>
+          Ingrese un apellido válido (solo letras).
+        </ion-text>
+      </ion-item>
 
-        <ion-card>
-          <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
-            <ion-input formControlName="password" type="password"></ion-input>
-          </ion-item>
-          <div *ngIf="formularioregistro.get('password')?.hasError('pattern') && formularioregistro.get('password')?.touched" class="error-message">
-            La contraseña debe tener al menos 4 números, 3 caracteres y 1 letra mayúscula.
-          </div>
-        </ion-card>
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="correo" (ionChange)="validarCorreo()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="mostrarMensajeCorreo" color="danger">
+        <ion-text>
+          Ingrese un correo electrónico válido.
+        </ion-text>
+      </ion-item>
 
-        <ion-card>
-          <ion-item>
-            <ion-label position="floating">Confirmar Contraseña</ion-label>
-            <ion-input formControlName="confirmacionPassword" type="password"></ion-input>
-          </ion-item>
-        </ion-card>
-      </form>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="contrasena" (ionChange)="validarContrasena()"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="mostrarMensaje" color="danger">
+        <ion-text>
+          La contraseña debe contener al menos 4 letras, una mayúscula y cuatro números.
+        </ion-text>
+      </ion-item>
 
-      <ion-buttons class="ion-justify-content-center">
-        <ion-button (click)="guardar()" class="gradient-button">Registrarse</ion-button>
-      </ion-buttons>
+      <ion-button expand="full" (click)="register()" >
+        Registrarse
+      </ion-button>
 
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      
+      <ion-item *ngIf="registroExitoso" color="success">
+        <ion-text>
+          ¡Registro exitoso! Serás redirigido a la página de inicio de sesión.
+        </ion-text>
+      </ion-item>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-content class="page-transition">
-  <ion-card class="purple-card">
+  <ion-card class="purple-card" #card>
     <ion-card-content>
       <div class="centered-image">
         <img src="assets/img/logo.png" alt="logo">
@@ -7,24 +7,26 @@
 
       <ion-card>
         <ion-item>
-          <ion-label position="floating">Nombre de Usuario</ion-label>
-          <ion-input [(ngModel)]="formLogin.nombre"></ion-input>
+          <ion-label position="floating">Ingresar  Nombre</ion-label>
+          <ion-input [(ngModel)]="nombre" (ionChange)="validarNombre()" data-cy="nombre-input"></ion-input>
         </ion-item>
+        <div *ngIf="mostrarMensajeNombre" class="error-message">
+          Ingrese un nombre válido.
+        </div>
       </ion-card>
 
       <ion-card>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input [(ngModel)]="formLogin.password" type="password"></ion-input>
+          <ion-input [(ngModel)]="contrasena" type="password" (ionChange)="validarContrasena()"></ion-input>
         </ion-item>
-        
-        <div *ngIf="formLogin.password.length > 0 && !validarPassword(formLogin.password)" class="error-message">
+        <div *ngIf="contrasena.length > 0 && !contrasenaValida" class="error-message">
           La contraseña debe tener al menos 4 números, 3 caracteres y 1 letra mayúscula.
         </div>
       </ion-card>
 
       <ion-buttons class="ion-justify-content-center">
-        <ion-button (click)="iniciarSesion(); play()" class="gradient-button">Iniciar sesión</ion-button>
+        <ion-button (click)="login(); play()" [disabled]="!contrasenaValida || mostrarMensajeNombre" class="gradient-button">Iniciar sesión</ion-button>
       </ion-buttons>
 
       <br>

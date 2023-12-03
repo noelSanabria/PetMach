@@ -39,6 +39,8 @@ export class AuthService {
     // Por simplicidad, simplemente guardamos las credenciales en el almacenamiento local.
     //await this.storage.set(username, password);
     await this.storage.set('user', { username, password });
+    console.log('Usuario registrado:', { username, password });
+
     return true;
   }
 

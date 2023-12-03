@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = 
@@ -27,7 +28,7 @@ const routes: Routes =
   },
   {
     path: 'usuario-list',
-    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule)
+    loadChildren: () => import('./usuario/usuario-list/usuario-list.module').then( m => m.UsuarioListPageModule), canActivate: [AuthGuard]
   },
   
   {
@@ -42,7 +43,7 @@ const routes: Routes =
   
   {
     path: 'product-add',
-    loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule)
+    loadChildren: () => import('./producto/product-add/product-add.module').then( m => m.ProductAddPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'product-list',
@@ -77,7 +78,7 @@ const routes: Routes =
   },
   {
     path: 'elegir-mascota',
-    loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then(m => m.ElegirMascotaPageModule)
+    loadChildren: () => import('./elegir-mascota/elegir-mascota.module').then(m => m.ElegirMascotaPageModule), canActivate : [AuthGuard]
   },
   {
     path: 'formulario',

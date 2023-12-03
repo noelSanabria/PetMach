@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { CameraSource } from '@capacitor/camera/dist/esm/definitions';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -17,21 +17,14 @@ export class ElegirMascotaPage implements OnInit {
   raza: string = "";
   edad: number = 0;
 
-  constructor(private rutaActiva: ActivatedRoute, private sanitizer: DomSanitizer) {
+  constructor(private rutaActiva: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) {
     this.rutaActiva.queryParams.subscribe((params) => {
-      if (params['nombreUsuario']) {
+      if (params['nombreUsuario'])
+       {
         this.mensaje = params['nombreUsuario'];
       }
-      if (params['informacionExtra']) {
-        this.informacionExtra = params['informacionExtra'];
-      }
-      if (params['raza']) {
-        this.raza = params['raza'];
-      }
-      if (params['edad']) {
-        this.edad = +params['edad']; // Convierte la cadena a número
-      }
-    });
+      
+       });
   }
 
   ngOnInit() {}
@@ -56,5 +49,9 @@ export class ElegirMascotaPage implements OnInit {
 
   eliminarFoto(id: number) {
     this.fotosMascotas = this.fotosMascotas.filter(mascota => mascota.id !== id);
+  }
+
+  cerrarSesion() {
+    this.router.navigate(['/login']);
   }
 }

@@ -1,28 +1,33 @@
 import { NavigationExtras, Router } from '@angular/router';
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
-import { AuthService } from '../auth.service';
-import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-
+import { AuthService } from '../auth.service';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
   @ViewChild(IonCard, { read: ElementRef, static: false }) card!: ElementRef<HTMLIonCardElement>;
-
+  
   private animation!: Animation;
-
-  formLogin = {
-    nombre: "",
-    password: ""
-  }
-
-  constructor(private router: Router, private animationCtrl: AnimationController,private authService: AuthService, private navCtrl: NavController, private storage: Storage) { }
+  
+  contrasena: string = '';
+  correo: string = '';
+  mostrarMensaje: boolean = false;
+  mostrarMensajeCorreo: boolean = false;
+  correoValido: boolean = false;
+  contrasenaValida: boolean = false;
+  nombre: string = '';
+  mostrarMensajeNombre: boolean = false;
+  
+  constructor(private router: Router, private animationCtrl: AnimationController,private authService: AuthService,private navCtrl: NavController, private storage: Storage,private toastController: ToastController ) { }
 
   ngOnInit(): void {
   }
@@ -37,33 +42,6 @@ export class LoginPage implements OnInit {
       .fromTo('opacity', '1', '0.2');
   }
 
-  iniciarSesion() {
-    console.log("nombre" + this.formLogin.nombre);
-    console.log("password" + this.formLogin.password);
-
-    if (!this.formLogin.nombre) {
-      alert("El campo 'Nombre de Usuario' no puede estar vacío.");
-      return;
-    }
-
-    if (this.validarPassword(this.formLogin.password)) {
-      setTimeout(() => {
-        let datosEnviar: NavigationExtras = {
-          queryParams: { nombreUsuario: this.formLogin.nombre }
-        }
-        this.router.navigate(['/elegir-mascota'], datosEnviar);
-      }, 3000);
-    } else {
-      alert("La contraseña no cumple con los requisitos.");
-    }
-  }
-
-  validarPassword(password: string): boolean {
-    // Validar si la contraseña cumple con los requisitos
-    const regex = /^(?=.*[0-9]{4})(?=.*[a-zA-Z]{3})(?=.*[A-Z]{1}).{8,}$/;
-    return regex.test(password);
-  }
-
   play() {
     this.animation.play();
   }
@@ -71,4 +49,77 @@ export class LoginPage implements OnInit {
   stop() {
     this.animation.stop();
   }
+
+  async login() {
+    const loggedIn = await this.authService.login(this.nombre, this.contrasena);
+    if (loggedIn) {
+      // Inicializa datosEnviar antes de usarlo
+      let datosEnviar: NavigationExtras = {
+        queryParams: { 
+          nombreUsuario: this.nombre
+        },
+      };
+
+      // Utiliza la variable inicializada al navegar
+      this.router.navigate(['/elegir-mascota'], datosEnviar);
+    } else {
+      this.presentToast('Usuario no creado. Regístrate primero.');
+      console.log('Credenciales incorrectas');
+    }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      color: 'danger',
+      buttons: [
+        {
+          text: 'Cerrar',
+          role: 'cancel',
+        },
+      ],
+    });
+    toast.present();
+  }
+
+  async register() {
+    const registered = await this.authService.register(this.nombre, this.contrasena);
+    if (registered) {
+      console.log('Usuario registrado correctamente', this.nombre);
+    } else {
+      console.log('Error al registrar el usuario');
+    }
+  }
+
+  validarContrasena() {
+    if (this.contrasena === '') {
+      this.mostrarMensaje = false;
+      this.contrasenaValida = false;
+    } else {
+      const regex = /^(?=.*[0-9].*[0-9].*[0-9].*[0-9])(?=.*[A-Z])(?=.*[a-zA-Z].*[a-zA-Z].*[a-zA-Z])([a-zA-Z0-9]+)$/;
+
+      if (regex.test(this.contrasena)) {
+        this.mostrarMensaje = false;
+        this.contrasenaValida = true;
+      } else {
+        this.mostrarMensaje = true;
+        this.contrasenaValida = false;
+      }
+    }
+  }
+
+  validarNombre() {
+    const regexNombre = /^[a-zA-Z]+$/;
+
+    if (regexNombre.test(this.nombre)) {
+      this.mostrarMensajeNombre = false;
+    } else {
+      this.mostrarMensajeNombre = true;
+      setTimeout(() => {
+        this.mostrarMensajeNombre = false;
+      }, 2000);
+    }
+  } 
 }

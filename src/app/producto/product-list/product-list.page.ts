@@ -3,6 +3,8 @@ import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClProducto } from '../model/Clproducto';
 import { ProductServiceService } from '../product-service.service';
+import { NavigationExtras,  } from '@angular/router';
+import { NavController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-list',
@@ -33,6 +35,7 @@ export class ProductListPage implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Harrys Loading...'
     });
+  
 
     await this.restApi.getProducts().subscribe({
       next: (res) => {
