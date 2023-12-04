@@ -1,17 +1,22 @@
-import { ComponentFixture, TestBed ,waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RegistroPage } from './registro.page';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterTestingModule } from '@angular/router/testing';
-describe('RegistroPage', () => {
+import { IonicModule } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { AuthService } from '../auth.service';
+import { NavController } from '@ionic/angular';
+
+describe(' RegistroPage', () => {
   let component: RegistroPage;
-  let fixture: ComponentFixture<RegistroPage>;
+  let fixture: ComponentFixture< RegistroPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule]
-     })
+      declarations: [ RegistroPage],
+      imports: [IonicModule.forRoot(), IonicStorageModule.forRoot()],
+      providers: [AuthService, NavController],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(RegistroPage);
+    fixture = TestBed.createComponent( RegistroPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
